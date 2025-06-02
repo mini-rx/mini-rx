@@ -1,4 +1,4 @@
-import { DestroyRef, inject, signal } from '@angular/core';
+import { DestroyRef, inject, signal, untracked } from '@angular/core';
 import {
     Action,
     calculateExtensions,
@@ -39,7 +39,7 @@ export class ComponentStore<StateType extends object> implements ComponentStoreL
 
     private _state = createSelectableWritableSignal(signal(this.initialState));
     get state(): StateType {
-        return this._state.get();
+        return untracked(() => this._state.get());
     }
 
     private updateState: UpdateStateCallback<StateType> = (

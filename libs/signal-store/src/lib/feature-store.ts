@@ -1,4 +1,4 @@
-import { DestroyRef, inject, Signal } from '@angular/core';
+import { DestroyRef, inject, Signal, untracked } from '@angular/core';
 import {
     Action,
     createFeatureStoreReducer,
@@ -31,7 +31,7 @@ export class FeatureStore<StateType extends object> implements ComponentStoreLik
         (state) => state[this.featureKey]
     );
     get state(): StateType {
-        return this._state();
+        return untracked(() => this._state());
     }
 
     private updateState: UpdateStateCallback<StateType> = (

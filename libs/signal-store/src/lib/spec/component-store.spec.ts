@@ -4,7 +4,7 @@ import { Observable, of, pipe, Subject, tap } from 'rxjs';
 import { createComponentStateSelector, createSelector } from '../signal-selector';
 import { ComponentStoreConfig, UndoExtension } from '@mini-rx/common';
 import { TestBed } from '@angular/core/testing';
-import { Component, signal } from '@angular/core';
+import { Component, effect, Injectable, signal } from '@angular/core';
 
 function setup<T extends object>(
     initialState: T,
@@ -333,13 +333,59 @@ describe('ComponentStore', () => {
         expect(selectedState()).toBe(1);
     });
 
-    it('should read state imperatively', () => {
-        const cs = setup({ counter: 0 });
+    describe('imperative state read', () => {
+        @Injectable({
+            providedIn: 'root',
+        })
+        class MyService extends ComponentStore<{ count: number; name: string }> {
+            effectRunCount = 0;
 
-        expect(cs.state).toEqual({ counter: 0 });
+            get name(): string {
+                return this.state.name;
+            }
 
-        cs.setState((state) => ({ counter: state.counter + 1 }));
+            constructor() {
+                super({ count: 1, name: '' });
 
-        expect(cs.state).toEqual({ counter: 1 });
+                effect(() => {
+                    this.state.count; // Imperative state read
+                    this.effectRunCount++;
+                });
+            }
+
+            increment(): void {
+                this.setState((state) => ({ count: state.count }));
+            }
+
+            updateName(name: string): void {
+                this.setState({ name });
+            }
+        }
+
+        let service: MyService;
+
+        beforeEach(() => {
+            TestBed.configureTestingModule({
+                providers: [MyService],
+            });
+            service = TestBed.inject(MyService);
+        });
+
+        it('should return the current state snapshot', () => {
+            service.updateName('Bruce');
+            expect(service.name).toBe('Bruce');
+
+            service.updateName('Nicolas');
+            expect(service.name).toBe('Nicolas');
+        });
+
+        it('should be untracked (and not trigger `effect`)', () => {
+            TestBed.flushEffects();
+            expect(service.effectRunCount).toBe(1); // effect emits the initial value
+
+            service.increment();
+            TestBed.flushEffects();
+            expect(service.effectRunCount).toBe(1); // increment should not trigger effect!
+        });
     });
 });
