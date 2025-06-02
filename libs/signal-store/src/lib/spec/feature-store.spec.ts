@@ -22,9 +22,16 @@ import {
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule } from '../modules/store.module';
 import { Store } from '../store';
-import { Component, EnvironmentInjector, inject, signal, Signal } from '@angular/core';
+import {
+    Component,
+    effect,
+    EnvironmentInjector,
+    inject,
+    Injectable,
+    signal,
+    Signal,
+} from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { createComponentStore } from '../component-store';
 
 let store: Store;
 let actions: Actions;
@@ -289,7 +296,7 @@ describe('FeatureStore', () => {
             template: ``,
         })
         class WelcomeComponent {
-            private cs = createComponentStore(counterInitialState);
+            private cs = createFeatureStore('someFeature', counterInitialState);
             private myEffect = this.cs.rxEffect<number>(pipe(tap((v) => effectCallback(v))));
             private counterSignal = signal<number>(1);
 
@@ -568,13 +575,59 @@ describe('FeatureStore', () => {
         expect(selectedState()).toBe(0);
     });
 
-    it('should read state imperatively', () => {
-        setupCounterFeatureStore();
+    describe('imperative state read', () => {
+        @Injectable({
+            providedIn: 'root',
+        })
+        class MyService extends FeatureStore<{ count: number; name: string }> {
+            effectRunCount = 0;
 
-        expect(counterFeatureStore.state).toEqual({ counter: 0 });
+            get name(): string {
+                return this.state.name;
+            }
 
-        counterFeatureStore.increment();
+            constructor() {
+                super('imperative-state-read', { count: 1, name: '' });
 
-        expect(counterFeatureStore.state).toEqual({ counter: 1 });
+                effect(() => {
+                    this.state.count; // Imperative state read
+                    this.effectRunCount++;
+                });
+            }
+
+            increment(): void {
+                this.setState((state) => ({ count: state.count }));
+            }
+
+            updateName(name: string): void {
+                this.setState({ name });
+            }
+        }
+
+        let service: MyService;
+
+        beforeEach(() => {
+            TestBed.configureTestingModule({
+                providers: [MyService],
+            });
+            service = TestBed.inject(MyService);
+        });
+
+        it('should return the current state snapshot', () => {
+            service.updateName('Bruce');
+            expect(service.name).toBe('Bruce');
+
+            service.updateName('Nicolas');
+            expect(service.name).toBe('Nicolas');
+        });
+
+        it('should be untracked (and not trigger `effect`)', () => {
+            TestBed.flushEffects();
+            expect(service.effectRunCount).toBe(1); // effect emits the initial value
+
+            service.increment();
+            TestBed.flushEffects();
+            expect(service.effectRunCount).toBe(1); // increment should not trigger effect!
+        });
     });
 });
