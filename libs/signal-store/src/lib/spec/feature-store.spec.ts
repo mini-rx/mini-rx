@@ -295,8 +295,8 @@ describe('FeatureStore', () => {
             template: ``,
         })
         class WelcomeComponent {
-            private cs = createFeatureStore('someFeature', counterInitialState);
-            private myEffect = this.cs.rxEffect<number>(pipe(tap((v) => effectCallback(v))));
+            private fs = createFeatureStore('someFeature', counterInitialState);
+            private myEffect = this.fs.rxEffect<number>(pipe(tap((v) => effectCallback(v))));
             private counterSignal = signal<number>(1);
 
             constructor() {
