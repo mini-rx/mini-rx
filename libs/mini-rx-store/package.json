@@ -29,7 +29,7 @@
         "rxjs": "^7.8.1"
     },
     "dependencies": {
-        "@mini-rx/common": ">= 2.0.0"
+        "@mini-rx/common": ">= 2.1.0"
     },
     "sideEffects": false
 }
