@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [6.1.0](https://github.com/spierala/mini-rx-store/compare/mini-rx-store-6.0.1...mini-rx-store-6.1.0) (2025-06-11)
+
+
+### Features
+
+* **mini-rx-store, signal-store:** select state with state key ([e7c8bdc](https://github.com/spierala/mini-rx-store/commit/e7c8bdc28eca29e84e594750aeef49de619a63e1))
+
 ## [6.0.1](https://github.com/spierala/mini-rx-store/compare/mini-rx-store-6.0.0...mini-rx-store-6.0.1) (2025-02-01)
 
 ## [6.0.0](https://github.com/spierala/mini-rx-store/compare/mini-rx-store-6.0.0-alpha.0...mini-rx-store-6.0.0) (2025-01-27)
