@@ -2,6 +2,19 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [3.1.0](https://github.com/spierala/mini-rx-store/compare/signal-store-3.0.1...signal-store-3.1.0) (2025-06-11)
+
+
+### Features
+
+* **mini-rx-store, signal-store:** select state with state key ([e7c8bdc](https://github.com/spierala/mini-rx-store/commit/e7c8bdc28eca29e84e594750aeef49de619a63e1))
+
+
+### Bug Fixes
+
+* **signal store:** state getter untracked ([18adcf5](https://github.com/spierala/mini-rx-store/commit/18adcf5c5b88be27f04e1522cacd59834bddccd3))
+* **signal store:** state getter untracked ([33c1b14](https://github.com/spierala/mini-rx-store/commit/33c1b143a073aeb18eeb39481a3268f8837d0511))
+
 ## [3.0.1](https://github.com/spierala/mini-rx-store/compare/signal-store-3.0.0...signal-store-3.0.1) (2025-06-11)
 
 
