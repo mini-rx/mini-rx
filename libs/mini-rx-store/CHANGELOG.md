@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [6.1.2](https://github.com/spierala/mini-rx-store/compare/mini-rx-store-6.1.1...mini-rx-store-6.1.2) (2025-06-12)
+
+
+### Bug Fixes
+
+* **mini-rx-store:** undo ts config change, selectFn: use explicit return type ([af27b7c](https://github.com/spierala/mini-rx-store/commit/af27b7cadbad1e2a2d3ec2eb0ff3c8d40a4e8b8f))
+
 ## [6.1.1](https://github.com/spierala/mini-rx-store/compare/mini-rx-store-6.1.0...mini-rx-store-6.1.1) (2025-06-11)
 
 ## [6.1.0](https://github.com/spierala/mini-rx-store/compare/mini-rx-store-6.0.1...mini-rx-store-6.1.0) (2025-06-11)

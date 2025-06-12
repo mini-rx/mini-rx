@@ -1,7 +1,19 @@
 import { BehaviorSubject, distinctUntilChanged, filter, map, Observable } from 'rxjs';
 import { isKey } from '@mini-rx/common';
 
-function createSelectFn<StateType extends object>(state$: Observable<StateType>) {
+// Temporarily using an explicit ReturnType
+// with `"noPropertyAccessFromIndexSignature": true` in the TS config this would not be necessary (it that case the return type is inferred like in signal store)
+// however it would be a breaking change: see this failed test: https://github.com/mini-rx/mini-rx/actions/runs/15596826534/job/43929032692#step:6:170
+// TODO look for a solution in the next major version of mini-rx-store
+export type CreateSelectFnReturn<StateType extends object> = {
+    (): Observable<StateType>;
+    <R>(mapFn: (state: StateType) => R): Observable<R>;
+    <KeyType extends keyof StateType>(key: KeyType): Observable<StateType[KeyType]>;
+};
+
+function createSelectFn<StateType extends object>(
+    state$: Observable<StateType>
+): CreateSelectFnReturn<StateType> {
     function select(): Observable<StateType>;
     function select<R>(mapFn: (state: StateType) => R): Observable<R>;
     function select<KeyType extends keyof StateType>(key: KeyType): Observable<StateType[KeyType]>;

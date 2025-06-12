@@ -21,7 +21,7 @@ import {
     UpdateStateCallback,
 } from '@mini-rx/common';
 import { createEffectFn } from './create-effect-fn';
-import { createLazyState } from './create-state';
+import { createLazyState, CreateSelectFnReturn } from './create-state';
 import { createConnectFn } from './create-connect-fn';
 import { createAssertState } from './assert-state';
 
@@ -99,7 +99,7 @@ export class ComponentStore<StateType extends object> implements ComponentStoreL
     setState = createUpdateFn(this.updateState);
     connect = createConnectFn(this.updateState, this.subSink);
     effect = createEffectFn(this.subSink);
-    select = this._state.select;
+    select: CreateSelectFnReturn<StateType> = this._state.select;
 
     destroy() {
         if (this._state.get()) {
