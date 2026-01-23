@@ -5,6 +5,8 @@ import {
     Input,
     OnInit,
     Output,
+    DestroyRef,
+    inject,
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TodoFilter } from '../../models/todo-filter';
@@ -21,6 +23,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     imports: [ReactiveFormsModule, CommonModule],
 })
 export class TodoFilterComponent implements OnInit {
+    private destroyRef = inject(DestroyRef);
+
     @Input()
     set filter(filter: TodoFilter) {
         this.formGroup.setValue(filter, { emitEvent: false });
@@ -41,7 +45,7 @@ export class TodoFilterComponent implements OnInit {
         // Debounce just the text input
         this.formGroup
             .get('search')!
-            .valueChanges.pipe(takeUntilDestroyed(), debounceTime(350))
+            .valueChanges.pipe(takeUntilDestroyed(this.destroyRef), debounceTime(350))
             .subscribe((value) => {
                 this.filterUpdate.emit({
                     ...this.formGroup.value,
@@ -51,7 +55,7 @@ export class TodoFilterComponent implements OnInit {
 
         this.formGroup
             .get('category')!
-            .valueChanges.pipe(takeUntilDestroyed())
+            .valueChanges.pipe(takeUntilDestroyed(this.destroyRef))
             .subscribe((value) => {
                 this.filterUpdate.emit({
                     ...this.formGroup.value,
