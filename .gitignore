@@ -44,3 +44,4 @@ Thumbs.db
 /docs/.docusaurus
 
 .nx/cache
+.nx/workspace-data

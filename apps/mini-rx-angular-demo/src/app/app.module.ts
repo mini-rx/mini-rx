@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { DbService } from './api/db.service';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,10 +22,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { PixelArtModule } from './modules/pixel-art/pixel-art.module';
 
 @NgModule({
+    declarations: [AppComponent],
+    bootstrap: [AppComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        HttpClientModule,
         HttpClientInMemoryWebApiModule.forRoot(DbService, { delay: 500, put204: false }),
         AppRoutingModule,
         ToastrModule.forRoot(),
@@ -55,8 +56,9 @@ import { PixelArtModule } from './modules/pixel-art/pixel-art.module';
         ProductsStateModule,
         PixelArtModule,
     ],
-    declarations: [AppComponent],
-    bootstrap: [AppComponent],
-    providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+    providers: [
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        provideHttpClient(withInterceptorsFromDi()),
+    ],
 })
 export class AppModule {}
