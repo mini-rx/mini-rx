@@ -7,6 +7,7 @@ import { ArtStoreService } from '../../state/art-store.service';
     styleUrls: ['./pixel-art.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [ArtStoreService],
+    standalone: false,
 })
 export class PixelArtComponent {
     @HostListener('mouseover', ['$event']) onHover(e: MouseEvent) {

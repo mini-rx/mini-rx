@@ -5,6 +5,7 @@ import { TodosStore } from '../../state/todos-store.service';
     templateUrl: './todos-shell.component.html',
     styleUrls: ['./todos-shell.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class TodosShellComponent {
     constructor(public todosState: TodosStore) {}

@@ -8,6 +8,7 @@ import { CounterStore } from '../state/counter-store.service';
     styleUrls: ['./counter.component.css'],
     providers: [CounterStore], // The CounterStore is provided for each counter component instance
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class CounterComponent {
     counter$: Observable<number> = this.counterStore.count$;

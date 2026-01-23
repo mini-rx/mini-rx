@@ -10,6 +10,7 @@ import { TodosSimpleStore } from '../../state/todos-simple-store.service';
     templateUrl: './todos-simple-shell.component.html',
     styleUrls: ['./todos-simple-shell.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class TodosSimpleShellComponent {
     todosDone$: Observable<Todo[]> = this.todosSimpleStore.todosDone$;

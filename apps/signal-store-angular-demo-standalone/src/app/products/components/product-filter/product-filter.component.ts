@@ -16,7 +16,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     selector: 'app-product-filter',
     templateUrl: './product-filter.component.html',
     styleUrls: ['./product-filter.component.scss'],
-    standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ReactiveFormsModule],
 })

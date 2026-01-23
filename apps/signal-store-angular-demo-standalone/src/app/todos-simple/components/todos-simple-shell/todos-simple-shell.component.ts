@@ -12,7 +12,6 @@ import { CommonModule } from '@angular/common';
     templateUrl: './todos-simple-shell.component.html',
     styleUrls: ['./todos-simple-shell.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
 })
 export class TodosSimpleShellComponent {
     todosSimpleFacade = inject(TodosSimpleFacade);

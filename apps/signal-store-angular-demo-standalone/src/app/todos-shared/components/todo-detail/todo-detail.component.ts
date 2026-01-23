@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
     selector: 'app-todo-detail',
     templateUrl: './todo-detail.component.html',
     styleUrls: ['./todo-detail.component.scss'],
-    standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoDetailComponent {

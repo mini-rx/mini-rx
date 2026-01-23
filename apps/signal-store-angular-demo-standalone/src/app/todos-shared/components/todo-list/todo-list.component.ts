@@ -7,7 +7,6 @@ import { CommonModule, NgClass } from '@angular/common';
     templateUrl: './todo-list.component.html',
     styleUrls: ['./todo-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [NgClass, CommonModule],
 })
 export class TodoListComponent {

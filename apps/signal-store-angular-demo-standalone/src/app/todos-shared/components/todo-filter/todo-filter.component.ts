@@ -19,7 +19,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     templateUrl: './todo-filter.component.html',
     styleUrls: ['./todo-filter.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [ReactiveFormsModule, CommonModule],
 })
 export class TodoFilterComponent implements OnInit {

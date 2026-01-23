@@ -1,9 +1,9 @@
 import {
-    ENVIRONMENT_INITIALIZER,
     EnvironmentProviders,
     inject,
     makeEnvironmentProviders,
     Type,
+    provideEnvironmentInitializer,
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
@@ -57,13 +57,12 @@ export function provideStore<T>(config: StoreConfig<T>): EnvironmentProviders {
             useValue: storeCore.actions$,
         },
         { provide: STORE_PROVIDER, useFactory: rootStoreProviderFactory },
-        {
-            provide: ENVIRONMENT_INITIALIZER,
-            multi: true,
-            useFactory() {
+        provideEnvironmentInitializer(() => {
+            const initializerFn = (() => {
                 return () => inject(STORE_PROVIDER);
-            },
-        },
+            })();
+            return initializerFn();
+        }),
     ]);
 }
 
@@ -88,13 +87,12 @@ export function provideFeature<T>(
         { provide: FEATURE_REDUCERS, multi: true, useValue: reducer },
         { provide: FEATURE_CONFIGS, multi: true, useValue: config },
         { provide: FEATURE_PROVIDER, useFactory: featureProviderFactory },
-        {
-            provide: ENVIRONMENT_INITIALIZER,
-            multi: true,
-            useFactory() {
+        provideEnvironmentInitializer(() => {
+            const initializerFn = (() => {
                 return () => inject(FEATURE_PROVIDER);
-            },
-        },
+            })();
+            return initializerFn();
+        }),
     ]);
 }
 
@@ -114,13 +112,12 @@ export function provideEffects(...classesWithEffects: any[]): EnvironmentProvide
     return makeEnvironmentProviders([
         ...fromClassesWithEffectsToClassProviders(OBJECTS_WITH_EFFECTS, classesWithEffects),
         { provide: EFFECTS_PROVIDER, useFactory: effectsProviderFactory },
-        {
-            provide: ENVIRONMENT_INITIALIZER,
-            multi: true,
-            useFactory() {
+        provideEnvironmentInitializer(() => {
+            const initializerFn = (() => {
                 return () => inject(EFFECTS_PROVIDER);
-            },
-        },
+            })();
+            return initializerFn();
+        }),
     ]);
 }
 
@@ -131,12 +128,11 @@ export function provideComponentStoreConfig(config: ComponentStoreConfig) {
             provide: COMPONENT_STORE_CONFIG_PROVIDER,
             useFactory: () => globalCsConfig.set(config),
         },
-        {
-            provide: ENVIRONMENT_INITIALIZER,
-            multi: true,
-            useFactory() {
+        provideEnvironmentInitializer(() => {
+            const initializerFn = (() => {
                 return () => inject(COMPONENT_STORE_CONFIG_PROVIDER);
-            },
-        },
+            })();
+            return initializerFn();
+        }),
     ]);
 }

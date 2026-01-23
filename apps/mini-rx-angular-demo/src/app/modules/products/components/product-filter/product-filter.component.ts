@@ -16,6 +16,7 @@ import { debounceTime, takeUntil } from 'rxjs/operators';
     templateUrl: './product-filter.component.html',
     styleUrls: ['./product-filter.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class ProductFilterComponent implements OnInit, OnDestroy {
     private unsubscribe$: Subject<void> = new Subject();

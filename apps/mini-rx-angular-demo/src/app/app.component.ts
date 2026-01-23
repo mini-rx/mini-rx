@@ -7,6 +7,7 @@ import { UserStore } from './modules/user/state/user-store.service';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class AppComponent {
     constructor(public productsStore: ProductsStore, public userStore: UserStore) {}

@@ -5,6 +5,7 @@ import { ProductsStore } from '../../../products/state/products-store.service';
     templateUrl: './cart-shell.component.html',
     styleUrls: ['./cart-shell.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class CartShellComponent {
     constructor(public productsStore: ProductsStore) {}
