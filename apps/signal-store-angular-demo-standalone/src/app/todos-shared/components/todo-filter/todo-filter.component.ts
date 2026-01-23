@@ -11,7 +11,7 @@ import {
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TodoFilter } from '../../models/todo-filter';
 import { debounceTime } from 'rxjs/operators';
-import { CommonModule } from '@angular/common';
+
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -19,7 +19,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     templateUrl: './todo-filter.component.html',
     styleUrls: ['./todo-filter.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ReactiveFormsModule, CommonModule],
+    imports: [ReactiveFormsModule],
 })
 export class TodoFilterComponent implements OnInit {
     private destroyRef = inject(DestroyRef);

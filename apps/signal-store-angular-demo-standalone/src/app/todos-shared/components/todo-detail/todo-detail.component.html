@@ -62,9 +62,9 @@
             >
                 Save
             </button>
-            <button *ngIf="todo.id" class="btn btn-primary btn-danger" (click)="delete.emit(todo)">
-                Delete
-            </button>
+            @if (todo.id) {
+            <button class="btn btn-primary btn-danger" (click)="delete.emit(todo)">Delete</button>
+            }
         </form>
     </div>
 </div>

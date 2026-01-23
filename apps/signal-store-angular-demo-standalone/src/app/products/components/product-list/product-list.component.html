@@ -12,25 +12,27 @@
         </label>
     </div>
     <ul class="list-group">
+        @for (product of products; track product) {
         <li
             class="list-group-item d-flex align-items-center"
-            *ngFor="let product of products"
             [ngClass]="{ active: selectedProduct?.id === product.id }"
             (click)="productSelect.emit(product)"
         >
             <span class="flex-grow-1">
                 {{ product.productName }}
-                <ng-container *ngIf="displayCode">({{ product.productCode }})</ng-container>
+                @if (displayCode) { ({{ product.productCode }}) }
             </span>
-            <div class="mr-2" *ngIf="product.price">
+            @if (product.price) {
+            <div class="mr-2">
                 {{ product.price | currency }}
             </div>
-
+            } @if (showCartBtn) {
             <span
-                *ngIf="showCartBtn"
                 class="btn bi bi-cart-plus-fill text-primary"
                 (click)="$event.stopPropagation(); addToCart.emit(product)"
             ></span>
+            }
         </li>
+        }
     </ul>
 </div>

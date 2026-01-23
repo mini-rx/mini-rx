@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Todo } from '../../models/todo';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 
 @Component({
-    imports: [FormsModule, CommonModule],
+    imports: [FormsModule],
     selector: 'app-todo-detail',
     templateUrl: './todo-detail.component.html',
     styleUrls: ['./todo-detail.component.scss'],

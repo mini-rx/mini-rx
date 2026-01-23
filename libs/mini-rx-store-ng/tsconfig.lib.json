@@ -8,7 +8,8 @@
         "types": [],
         "stripInternal": true,
         "target": "ES2022",
-        "useDefineForClassFields": false
+        "useDefineForClassFields": false,
+        "moduleResolution": "bundler"
     },
     "exclude": ["src/test-setup.ts", "**/*.spec.ts", "**/*.test.ts", "jest.config.ts"],
     "include": ["**/*.ts"]

@@ -5,10 +5,9 @@ import { TodosSimpleFacade } from '../../state/todos-simple-facade.service';
 import { TodoDetailComponent } from '../../../todos-shared/components/todo-detail/todo-detail.component';
 import { TodoFilterComponent } from '../../../todos-shared/components/todo-filter/todo-filter.component';
 import { TodoListComponent } from '../../../todos-shared/components/todo-list/todo-list.component';
-import { CommonModule } from '@angular/common';
 
 @Component({
-    imports: [TodoDetailComponent, TodoFilterComponent, TodoListComponent, CommonModule],
+    imports: [TodoDetailComponent, TodoFilterComponent, TodoListComponent],
     templateUrl: './todos-simple-shell.component.html',
     styleUrls: ['./todos-simple-shell.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

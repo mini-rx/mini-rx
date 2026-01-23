@@ -70,7 +70,8 @@
                     "buildTarget": "mini-rx-angular-demo:build:development"
                 }
             },
-            "defaultConfiguration": "development"
+            "defaultConfiguration": "development",
+            "continuous": true
         },
         "extract-i18n": {
             "executor": "@angular-devkit/build-angular:extract-i18n",
@@ -85,7 +86,8 @@
             "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/apps/mini-rx-angular-demo"],
             "options": {
-                "jestConfig": "apps/mini-rx-angular-demo/jest.config.ts"
+                "jestConfig": "apps/mini-rx-angular-demo/jest.config.ts",
+                "tsConfig": "apps/mini-rx-angular-demo/tsconfig.spec.json"
             }
         },
         "serveAppAndWatchLibs": {

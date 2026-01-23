@@ -4,39 +4,40 @@
     </nav>
 
     <div class="container">
-        <ng-container *ngIf="userFacade.user() as user">
-            <div class="form-group">
-                <label for="firstName">First name</label>
-                <input
-                    class="form-control"
-                    type="text"
-                    [ngModel]="user.firstName"
-                    (ngModelChange)="userFacade.updateUser({ firstName: $event })"
-                    id="firstName"
-                    name="firstName"
-                    placeholder="First name"
-                />
-            </div>
-            <div class="form-group">
-                <label for="lastName">Last name</label>
-                <input
-                    class="form-control"
-                    type="text"
-                    [ngModel]="user.lastName"
-                    (ngModelChange)="userFacade.updateUser({ lastName: $event })"
-                    id="lastName"
-                    name="lastName"
-                    placeholder="Last name"
-                />
-            </div>
-        </ng-container>
+        @if (userFacade.user(); as user) {
+        <div class="form-group">
+            <label for="firstName">First name</label>
+            <input
+                class="form-control"
+                type="text"
+                [ngModel]="user.firstName"
+                (ngModelChange)="userFacade.updateUser({ firstName: $event })"
+                id="firstName"
+                name="firstName"
+                placeholder="First name"
+            />
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last name</label>
+            <input
+                class="form-control"
+                type="text"
+                [ngModel]="user.lastName"
+                (ngModelChange)="userFacade.updateUser({ lastName: $event })"
+                id="lastName"
+                name="lastName"
+                placeholder="Last name"
+            />
+        </div>
+        }
 
         <div class="card">
             <div class="card-header d-flex">
                 <span class="flex-grow-1">Permissions</span>
             </div>
             <div class="card-body">
-                <div class="form-group" *ngIf="userFacade.permissions()">
+                @if (userFacade.permissions()) {
+                <div class="form-group">
                     <div class="custom-control custom-switch">
                         <input
                             type="checkbox"
@@ -51,6 +52,7 @@
                         </label>
                     </div>
                 </div>
+                }
             </div>
         </div>
     </div>

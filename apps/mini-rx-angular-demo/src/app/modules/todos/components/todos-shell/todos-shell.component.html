@@ -1,67 +1,65 @@
-<ng-container *ngIf="todosState.vm$ | async as vm">
-    <div class="d-flex flex-column h-100">
-        <nav class="navbar navbar-light bg-light mb-1">
-            <a class="navbar-brand">Todos</a>
-            <div class="d-flex flex-grow-1 mb-2 justify-content-between mt-2">
-                <button class="btn btn-primary btn-sm" (click)="todosState.initNewTodo()">
-                    New
-                </button>
-                <app-filter
-                    (filterUpdate)="todosState.updateFilter($event)"
-                    [filter]="vm.filter"
-                ></app-filter>
-            </div>
-        </nav>
-
-        <div class="m-3 alert alert-info d-flex align-items-center" role="alert">
-            <i class="info-icon bi bi-info-circle-fill"></i>
-            <div>
-                MiniRx
-                <strong>Feature Store</strong>
-                is used to manage the "Todos" state.
-                <br />
-                <br />
-                The todos are updated optimistically. Press the ALT key while saving or deleting a
-                todo to simulate an API error: The optimistic update will be rolled back.
-            </div>
+@if (todosState.vm$ | async; as vm) {
+<div class="d-flex flex-column h-100">
+    <nav class="navbar navbar-light bg-light mb-1">
+        <a class="navbar-brand">Todos</a>
+        <div class="d-flex flex-grow-1 mb-2 justify-content-between mt-2">
+            <button class="btn btn-primary btn-sm" (click)="todosState.initNewTodo()">New</button>
+            <app-filter
+                (filterUpdate)="todosState.updateFilter($event)"
+                [filter]="vm.filter"
+            ></app-filter>
         </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-header">
-                            <span>Todos</span>
-                        </div>
-                        <app-todo-list
-                            [todos]="vm.todosNotDone"
-                            [selectedTodo]="vm.selectedTodo"
-                            (selectTodo)="todosState.selectTodo($event)"
-                        ></app-todo-list>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-header">
-                            <span>Todos Done</span>
-                        </div>
-                        <app-todo-list
-                            [todos]="vm.todosDone"
-                            [selectedTodo]="vm.selectedTodo"
-                            (selectTodo)="todosState.selectTodo($event)"
-                        ></app-todo-list>
-                    </div>
-                </div>
-                <div class="col" *ngIf="vm.selectedTodo">
-                    <app-todo-detail
-                        [todo]="vm.selectedTodo"
-                        (create)="todosState.create($event)"
-                        (update)="todosState.update($event)"
-                        (delete)="todosState.delete($event)"
-                        (closed)="todosState.clearSelectedTodo()"
-                    ></app-todo-detail>
-                </div>
-            </div>
+    </nav>
+    <div class="m-3 alert alert-info d-flex align-items-center" role="alert">
+        <i class="info-icon bi bi-info-circle-fill"></i>
+        <div>
+            MiniRx
+            <strong>Feature Store</strong>
+            is used to manage the "Todos" state.
+            <br />
+            <br />
+            The todos are updated optimistically. Press the ALT key while saving or deleting a todo
+            to simulate an API error: The optimistic update will be rolled back.
         </div>
     </div>
-</ng-container>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <span>Todos</span>
+                    </div>
+                    <app-todo-list
+                        [todos]="vm.todosNotDone"
+                        [selectedTodo]="vm.selectedTodo"
+                        (selectTodo)="todosState.selectTodo($event)"
+                    ></app-todo-list>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <span>Todos Done</span>
+                    </div>
+                    <app-todo-list
+                        [todos]="vm.todosDone"
+                        [selectedTodo]="vm.selectedTodo"
+                        (selectTodo)="todosState.selectTodo($event)"
+                    ></app-todo-list>
+                </div>
+            </div>
+            @if (vm.selectedTodo) {
+            <div class="col">
+                <app-todo-detail
+                    [todo]="vm.selectedTodo"
+                    (create)="todosState.create($event)"
+                    (update)="todosState.update($event)"
+                    (delete)="todosState.delete($event)"
+                    (closed)="todosState.clearSelectedTodo()"
+                ></app-todo-detail>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+}

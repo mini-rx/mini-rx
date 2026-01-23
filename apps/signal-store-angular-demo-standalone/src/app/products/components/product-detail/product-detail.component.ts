@@ -2,14 +2,13 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { Product } from '../../models/product';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Permissions } from '../../../user/state/user-facade.service';
-import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-product-detail',
     templateUrl: './product-detail.component.html',
     styleUrls: ['./product-detail.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [FormsModule, NgIf],
+    imports: [FormsModule],
 })
 export class ProductDetailComponent {
     @Input()
