@@ -1,7 +1,9 @@
 import {
     ChangeDetectionStrategy,
     Component,
+    DestroyRef,
     EventEmitter,
+    inject,
     Input,
     OnInit,
     Output,
@@ -19,6 +21,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     imports: [ReactiveFormsModule],
 })
 export class ProductFilterComponent implements OnInit {
+    private destroyRef = inject(DestroyRef);
+
     @Input()
     set search(search: string) {
         this.formGroup.setValue({ search }, { emitEvent: false });
@@ -34,7 +38,7 @@ export class ProductFilterComponent implements OnInit {
 
     ngOnInit(): void {
         this.searchInput.valueChanges
-            .pipe(debounceTime(350), takeUntilDestroyed())
+            .pipe(debounceTime(350), takeUntilDestroyed(this.destroyRef))
             .subscribe((value) => {
                 this.searchChanged.emit(value);
             });
