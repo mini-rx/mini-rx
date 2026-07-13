@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
     providedIn: 'root',
 })
 export class ErrorHandlerService {
-    constructor(private toastr: ToastrService) {}
+    private toastr = inject(ToastrService);
 
     handleError(err: any): Observable<never> {
         let errorMessage: string;

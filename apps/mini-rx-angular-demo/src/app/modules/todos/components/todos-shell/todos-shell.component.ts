@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { TodosStore } from '../../state/todos-store.service';
 
 @Component({
@@ -8,5 +8,5 @@ import { TodosStore } from '../../state/todos-store.service';
     standalone: false,
 })
 export class TodosShellComponent {
-    constructor(public todosState: TodosStore) {}
+    todosState = inject(TodosStore);
 }

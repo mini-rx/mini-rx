@@ -23,7 +23,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import { Inject, ModuleWithProviders, NgModule, Optional, Type } from '@angular/core';
+import { ModuleWithProviders, NgModule, Type, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Action } from '@mini-rx/common';
 import {
@@ -36,12 +36,9 @@ import { OBJECTS_WITH_EFFECTS } from '../injection-tokens';
 
 @NgModule()
 export class EffectsModule {
-    constructor(
-        @Inject(OBJECTS_WITH_EFFECTS) objectsWithEffects: any[],
-        // Make sure effects can select state from store, also if EffectsModule is registered before Store.forFeature
-        @Optional() storeRootModule: StoreRootModule,
-        @Optional() storeFeatureModule: StoreFeatureModule
-    ) {
+    constructor() {
+        const objectsWithEffects = inject(OBJECTS_WITH_EFFECTS);
+
         const effects = fromObjectsWithEffectsToEffects(objectsWithEffects);
         effects.forEach((effect: Observable<Action>) => {
             rxEffect(effect);

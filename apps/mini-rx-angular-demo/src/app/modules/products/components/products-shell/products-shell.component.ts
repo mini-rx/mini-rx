@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ProductsStore } from '../../state/products-store.service';
 import { UserStore } from '../../../user/state/user-store.service';
 
@@ -9,5 +9,6 @@ import { UserStore } from '../../../user/state/user-store.service';
     standalone: false,
 })
 export class ProductsShellComponent {
-    constructor(public productsStore: ProductsStore, public userStore: UserStore) {}
+    productsStore = inject(ProductsStore);
+    userStore = inject(UserStore);
 }

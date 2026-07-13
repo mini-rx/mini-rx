@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { Injectable, NgModule } from '@angular/core';
+import { Injectable, NgModule, inject as inject_1 } from '@angular/core';
 import { catchError, map, mergeMap, of } from 'rxjs';
 import { StoreModule } from '../modules/store.module';
 import { EffectsModule } from '../modules/effects.module';
@@ -71,6 +71,8 @@ function featureMetaReducer(reducer: Reducer<any>): Reducer<any> {
 class Counter3Module {}
 @Injectable()
 class TodoEffects {
+    private actions$ = inject_1(Actions);
+
     loadTodos$ = createRxEffect(
         this.actions$.pipe(
             ofType(loadAction.type),
@@ -89,16 +91,16 @@ class TodoEffects {
         ),
         { dispatch: false }
     );
-    constructor(private actions$: Actions) {}
 }
 @Injectable()
 class TodoEffectsNOK {
+    private actions$ = inject_1(Actions);
+
     // Effect is not registered because it is not using createEffect!
     loadTodos$ = this.actions$.pipe(
         ofType(loadAction3.type),
         mergeMap(() => of('some result').pipe(map((res) => loadSuccessAction3)))
     );
-    constructor(private actions$: Actions) {}
 }
 class CounterFeatureStore extends FeatureStore<CounterState> {
     constructor() {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Todo } from '../models/todo';
 import { Observable, tap } from 'rxjs';
@@ -21,11 +21,9 @@ function updateApiUrl(altKeyPressed: boolean) {
     providedIn: 'root',
 })
 export class TodosApiService {
-    constructor(
-        private http: HttpClient,
-        private toastr: ToastrService,
-        private errorHandler: ErrorHandlerService
-    ) {}
+    private http = inject(HttpClient);
+    private toastr = inject(ToastrService);
+    private errorHandler = inject(ErrorHandlerService);
 
     getTodos(): Observable<Todo[]> {
         return this.http.get<Todo[]>(todoApiUrl);

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Todo } from '../../todos-shared/models/todo';
 import { TodoFilter } from '../../todos-shared/models/todo-filter';
 import { pipe } from 'rxjs';
@@ -67,10 +67,12 @@ const getVm = createSelector({
     providedIn: 'root',
 })
 export class TodosStore extends FeatureStore<TodosState> {
+    private apiService = inject(TodosApiService);
+
     // STATE OBSERVABLES
     vm$ = this.select(getVm);
 
-    constructor(private apiService: TodosApiService) {
+    constructor() {
         super('todos', initialState);
 
         this.load();
