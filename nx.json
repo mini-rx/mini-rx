@@ -95,7 +95,12 @@
             }
         },
         "@nx/eslint:lint": {
-            "inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
+            "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/tools/eslint-rules/**/*"
+            ],
             "cache": true
         }
     },
@@ -113,5 +118,6 @@
     },
     "nxCloudAccessToken": "MzM5NDg2OTMtY2M5YS00OTZkLTgwYTctYjUwZTA1MDNjMTlkfHJlYWQtd3JpdGU=",
     "useInferencePlugins": false,
-    "defaultBase": "main"
+    "defaultBase": "main",
+    "analytics": false
 }

@@ -238,6 +238,7 @@ describe('FeatureStore', () => {
         const effectCallback = jest.fn<void, [number]>();
         @Component({
             template: ``,
+            standalone: false,
         })
         class WelcomeComponent {
             private fs = createFeatureStore('someFeature', counterInitialState);

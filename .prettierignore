@@ -12,3 +12,4 @@ yarn.lock
 
 /.nx/cache
 /.nx/workspace-data
+.nx/self-healing

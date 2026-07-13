@@ -51,6 +51,7 @@ describe('ComponentStore', () => {
             template: `
                 <span>{{ selectedCounterState() }}</span>
             `,
+            standalone: false,
         })
         class MyComponent {
             counterSignal = signal(2);
@@ -159,6 +160,7 @@ describe('ComponentStore', () => {
     it('should dispatch an Action on destroy', () => {
         @Component({
             template: undefined,
+            standalone: false,
         })
         class MyComponent {
             cs = createComponentStore({});
@@ -184,6 +186,7 @@ describe('ComponentStore', () => {
         const spy = jest.fn();
         @Component({
             template: undefined,
+            standalone: false,
         })
         class MyComponent {
             private cs = createComponentStore(counterInitialState);
@@ -216,6 +219,7 @@ describe('ComponentStore', () => {
         const effectCallback = jest.fn<void, [number]>();
         @Component({
             template: ``,
+            standalone: false,
         })
         class MyComponent {
             private cs = createComponentStore(counterInitialState);

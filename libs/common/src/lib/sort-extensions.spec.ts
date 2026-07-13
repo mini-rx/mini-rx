@@ -24,12 +24,10 @@ describe('sortExtensions', () => {
     }
     it('should sort extensions', () => {
         const extensions = [new Extension1(), new Extension2(), new Extension3()];
-        expect(sortExtensions(extensions)).toEqual(
-            expect.objectContaining([
-                { id: 3, sortOrder: 1 },
-                { id: 2, sortOrder: 2 },
-                { id: 1, sortOrder: 3 },
-            ])
-        );
+        expect(sortExtensions(extensions)).toEqual([
+            expect.objectContaining({ id: 3, sortOrder: 1 }),
+            expect.objectContaining({ id: 2, sortOrder: 2 }),
+            expect.objectContaining({ id: 1, sortOrder: 3 }),
+        ]);
     });
 });
