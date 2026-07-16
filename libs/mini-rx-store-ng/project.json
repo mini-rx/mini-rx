@@ -9,6 +9,7 @@
         "build": {
             "executor": "@nx/angular:package",
             "outputs": ["{workspaceRoot}/dist/libs/mini-rx-store-ng"],
+            "defaultConfiguration": "production",
             "options": {
                 "project": "libs/mini-rx-store-ng/ng-package.json",
                 "tsConfig": "libs/mini-rx-store-ng/tsconfig.lib.json"
@@ -18,8 +19,7 @@
                     "tsConfig": "libs/mini-rx-store-ng/tsconfig.lib.prod.json"
                 },
                 "development": {}
-            },
-            "defaultConfiguration": "production"
+            }
         },
         "test": {
             "executor": "@nx/jest:jest",

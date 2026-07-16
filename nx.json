@@ -98,7 +98,7 @@
             "inputs": [
                 "default",
                 "^default",
-                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/eslint.config.mjs",
                 "{workspaceRoot}/tools/eslint-rules/**/*"
             ],
             "cache": true
@@ -109,7 +109,7 @@
         "sharedGlobals": ["{workspaceRoot}/babel.config.json"],
         "production": [
             "default",
-            "!{projectRoot}/.eslintrc.json",
+            "!{projectRoot}/eslint.config.mjs",
             "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
             "!{projectRoot}/tsconfig.spec.json",
             "!{projectRoot}/jest.config.[jt]s",

@@ -9,7 +9,7 @@ import {
     ReduxDevtoolsExtension,
     UndoExtension,
 } from '@mini-rx/signal-store';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withXhr } from '@angular/common/http';
 import { provideToastr } from 'ngx-toastr';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DbService } from './api/db.service';
@@ -19,7 +19,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        provideHttpClient(),
+        provideHttpClient(withXhr()),
         provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
         provideAnimations(),
         provideToastr(),

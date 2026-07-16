@@ -9,6 +9,7 @@
         "build": {
             "executor": "@nx/angular:package",
             "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+            "defaultConfiguration": "production",
             "options": {
                 "project": "libs/signal-store/ng-package.json",
                 "tsConfig": "libs/signal-store/tsconfig.lib.json"
@@ -18,8 +19,7 @@
                     "tsConfig": "libs/signal-store/tsconfig.lib.prod.json"
                 },
                 "development": {}
-            },
-            "defaultConfiguration": "production"
+            }
         },
         "test": {
             "executor": "@nx/jest:jest",

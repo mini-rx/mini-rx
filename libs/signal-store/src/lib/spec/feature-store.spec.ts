@@ -30,6 +30,7 @@ import {
     Injectable,
     signal,
     Signal,
+    ChangeDetectionStrategy,
 } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 let store: Store;
@@ -56,6 +57,7 @@ function setupStore(
     actions = TestBed.inject(Actions);
 }
 @Component({
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: undefined,
 })
 class MyComponent {}
