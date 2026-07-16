@@ -35,13 +35,13 @@ const updatedAsyncUser: Partial<UserState> = {
     lastName: 'Seagal',
     age: 31,
 };
-function fakeApiGet(): Observable<UserState> {
+function fakeApiGet(): Observable<Partial<UserState>> {
     return cold('---a', { a: asyncUser });
 }
-function fakeApiUpdate(): Observable<UserState> {
+function fakeApiUpdate(): Observable<Partial<UserState>> {
     return cold('-a', { a: updatedAsyncUser });
 }
-function fakeApiWithError(): Observable<UserState> {
+function fakeApiWithError(): Observable<Partial<UserState>> {
     return cold('-#');
 }
 interface UserState {

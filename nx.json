@@ -119,5 +119,13 @@
     "nxCloudAccessToken": "MzM5NDg2OTMtY2M5YS00OTZkLTgwYTctYjUwZTA1MDNjMTlkfHJlYWQtd3JpdGU=",
     "useInferencePlugins": false,
     "defaultBase": "main",
-    "analytics": false
+    "analytics": false,
+    "plugins": [
+        {
+            "plugin": "@nx/jest/plugin",
+            "options": {
+                "targetName": "test"
+            }
+        }
+    ]
 }
