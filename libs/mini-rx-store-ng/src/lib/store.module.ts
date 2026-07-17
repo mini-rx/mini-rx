@@ -1,4 +1,4 @@
-import { Inject, InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
+import { InjectionToken, ModuleWithProviders, NgModule, inject } from '@angular/core';
 import {
     Actions,
     actions$,
@@ -35,20 +35,18 @@ export function storeFactory(config: StoreConfig<Record<string, any>>) {
 
 @NgModule()
 export class StoreRootModule {
-    constructor(
-        private store: Store // Make sure store is initialized also if it is NOT injected in other services/components
-    ) {}
+    private store = inject(Store);
 }
 
 @NgModule()
 export class StoreFeatureModule {
-    constructor(
-        private store: Store,
-        root: StoreRootModule, // Prevent feature states to be initialized before root state
-        @Inject(FEATURE_NAMES) featureNames: string[],
-        @Inject(FEATURE_REDUCERS) reducers: Reducer<any>[],
-        @Inject(FEATURE_CONFIGS) configs: FeatureConfig<any>[]
-    ) {
+    private store = inject(Store);
+
+    constructor() {
+        const featureNames = inject(FEATURE_NAMES);
+        const reducers = inject(FEATURE_REDUCERS);
+        const configs = inject(FEATURE_CONFIGS);
+
         featureNames.forEach((featureName, index) => {
             this.store.feature(featureName, reducers[index], configs[index]);
         });

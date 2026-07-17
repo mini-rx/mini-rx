@@ -14,7 +14,59 @@
             "unitTestRunner": "jest"
         },
         "@nx/angular:component": {
-            "style": "scss"
+            "style": "scss",
+            "type": "component"
+        },
+        "@schematics/angular:component": {
+            "type": "component"
+        },
+        "@nx/angular:directive": {
+            "type": "directive"
+        },
+        "@schematics/angular:directive": {
+            "type": "directive"
+        },
+        "@nx/angular:service": {
+            "type": "service"
+        },
+        "@schematics/angular:service": {
+            "type": "service"
+        },
+        "@nx/angular:scam": {
+            "type": "component"
+        },
+        "@nx/angular:scam-directive": {
+            "type": "directive"
+        },
+        "@nx/angular:guard": {
+            "typeSeparator": "."
+        },
+        "@schematics/angular:guard": {
+            "typeSeparator": "."
+        },
+        "@nx/angular:interceptor": {
+            "typeSeparator": "."
+        },
+        "@schematics/angular:interceptor": {
+            "typeSeparator": "."
+        },
+        "@nx/angular:module": {
+            "typeSeparator": "."
+        },
+        "@schematics/angular:module": {
+            "typeSeparator": "."
+        },
+        "@nx/angular:pipe": {
+            "typeSeparator": "."
+        },
+        "@schematics/angular:pipe": {
+            "typeSeparator": "."
+        },
+        "@nx/angular:resolver": {
+            "typeSeparator": "."
+        },
+        "@schematics/angular:resolver": {
+            "typeSeparator": "."
         }
     },
     "defaultProject": "mini-rx-angular-demo",
@@ -43,7 +95,12 @@
             }
         },
         "@nx/eslint:lint": {
-            "inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
+            "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/eslint.config.mjs",
+                "{workspaceRoot}/tools/eslint-rules/**/*"
+            ],
             "cache": true
         }
     },
@@ -52,7 +109,7 @@
         "sharedGlobals": ["{workspaceRoot}/babel.config.json"],
         "production": [
             "default",
-            "!{projectRoot}/.eslintrc.json",
+            "!{projectRoot}/eslint.config.mjs",
             "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
             "!{projectRoot}/tsconfig.spec.json",
             "!{projectRoot}/jest.config.[jt]s",
@@ -61,5 +118,14 @@
     },
     "nxCloudAccessToken": "MzM5NDg2OTMtY2M5YS00OTZkLTgwYTctYjUwZTA1MDNjMTlkfHJlYWQtd3JpdGU=",
     "useInferencePlugins": false,
-    "defaultBase": "main"
+    "defaultBase": "main",
+    "analytics": false,
+    "plugins": [
+        {
+            "plugin": "@nx/jest/plugin",
+            "options": {
+                "targetName": "test"
+            }
+        }
+    ]
 }

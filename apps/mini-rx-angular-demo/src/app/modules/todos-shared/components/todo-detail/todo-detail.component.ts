@@ -6,6 +6,7 @@ import { Todo } from '../../models/todo';
     templateUrl: './todo-detail.component.html',
     styleUrls: ['./todo-detail.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class TodoDetailComponent {
     @Input()

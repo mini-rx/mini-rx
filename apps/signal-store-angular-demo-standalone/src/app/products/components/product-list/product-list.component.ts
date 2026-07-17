@@ -1,15 +1,14 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../models/product';
-import { CurrencyPipe, NgClass, NgForOf, NgIf } from '@angular/common';
+import { CurrencyPipe, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-product-list',
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.scss'],
-    standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CurrencyPipe, NgClass, FormsModule, NgForOf, NgIf],
+    imports: [CurrencyPipe, NgClass, FormsModule],
 })
 export class ProductListComponent {
     @Input()

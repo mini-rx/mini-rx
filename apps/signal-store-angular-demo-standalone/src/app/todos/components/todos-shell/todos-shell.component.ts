@@ -5,14 +5,12 @@ import { TodosFacade } from '../../state/todos-facade.service';
 import { TodoDetailComponent } from '../../../todos-shared/components/todo-detail/todo-detail.component';
 import { TodoListComponent } from '../../../todos-shared/components/todo-list/todo-list.component';
 import { TodoFilterComponent } from '../../../todos-shared/components/todo-filter/todo-filter.component';
-import { NgIf } from '@angular/common';
 
 @Component({
     templateUrl: './todos-shell.component.html',
     styleUrls: ['./todos-shell.component.scss'],
-    standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [TodoDetailComponent, TodoListComponent, TodoFilterComponent, NgIf],
+    imports: [TodoDetailComponent, TodoListComponent, TodoFilterComponent],
 })
 export class TodosShellComponent {
     todosFacade = inject(TodosFacade);

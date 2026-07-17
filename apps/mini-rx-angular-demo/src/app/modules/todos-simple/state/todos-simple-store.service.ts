@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Todo } from '../../todos-shared/models/todo';
 import { TodoFilter } from '../../todos-shared/models/todo-filter';
 import { Observable } from 'rxjs';
@@ -29,6 +29,8 @@ const initialState: TodosState = {
     providedIn: 'root',
 })
 export class TodosSimpleStore extends FeatureStore<TodosState> {
+    private apiService = inject(TodosApiService);
+
     // STATE OBSERVABLES
     todosDone$: Observable<Todo[]> = this.select((state) => {
         const filteredTodos = filterTodos(state.todos, state.filter);
@@ -41,7 +43,7 @@ export class TodosSimpleStore extends FeatureStore<TodosState> {
     filter$: Observable<TodoFilter> = this.select((state) => state.filter);
     selectedTodo$: Observable<Todo | undefined> = this.select((state) => state.selectedTodo);
 
-    constructor(private apiService: TodosApiService) {
+    constructor() {
         super('todos-simple', initialState);
 
         this.load();

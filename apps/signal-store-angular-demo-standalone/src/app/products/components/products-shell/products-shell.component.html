@@ -1,15 +1,14 @@
-<div class="d-flex flex-column h-100" *ngIf="userFacade.permissions()">
+@if (userFacade.permissions()) {
+<div class="d-flex flex-column h-100">
     <nav class="navbar navbar-light bg-light mb-1">
         <a class="navbar-brand">Products</a>
         <div class="d-flex flex-grow-1 mb-2 justify-content-between mt-2">
             <div>
-                <button
-                    *ngIf="userFacade.permissions().canUpdateProducts"
-                    class="btn btn-primary btn-sm"
-                    (click)="productsFacade.newProduct()"
-                >
+                @if (userFacade.permissions().canUpdateProducts) {
+                <button class="btn btn-primary btn-sm" (click)="productsFacade.newProduct()">
                     New
                 </button>
+                }
             </div>
             <app-product-filter
                 [search]="productsFacade.search()"
@@ -17,7 +16,6 @@
             ></app-product-filter>
         </div>
     </nav>
-
     <div class="m-3 alert alert-info d-flex align-items-center" role="alert">
         <i class="info-icon bi bi-info-circle-fill"></i>
         <div>
@@ -37,7 +35,6 @@
             Saving an existing product uses optimistic update (and undo in case of API error).
         </div>
     </div>
-
     <div class="container">
         <div class="row">
             <div class="col">
@@ -51,7 +48,8 @@
                     (addToCart)="productsFacade.addProductToCart($event)"
                 ></app-product-list>
             </div>
-            <div class="col" *ngIf="productsFacade.selectedProduct()">
+            @if (productsFacade.selectedProduct()) {
+            <div class="col">
                 <app-product-detail
                     [product]="productsFacade.selectedProduct()!"
                     [detailTitle]="productsFacade.detailTitle()"
@@ -62,6 +60,8 @@
                     (closed)="productsFacade.clearCurrentProduct()"
                 ></app-product-detail>
             </div>
+            }
         </div>
     </div>
 </div>
+}

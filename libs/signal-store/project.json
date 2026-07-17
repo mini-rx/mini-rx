@@ -9,24 +9,27 @@
         "build": {
             "executor": "@nx/angular:package",
             "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+            "defaultConfiguration": "production",
             "options": {
-                "project": "libs/signal-store/ng-package.json"
+                "project": "libs/signal-store/ng-package.json",
+                "tsConfig": "libs/signal-store/tsconfig.lib.json"
             },
             "configurations": {
                 "production": {
                     "tsConfig": "libs/signal-store/tsconfig.lib.prod.json"
                 },
-                "development": {
-                    "tsConfig": "libs/signal-store/tsconfig.lib.json"
-                }
-            },
-            "defaultConfiguration": "production"
+                "development": {}
+            }
         },
         "test": {
-            "executor": "@nx/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
             "options": {
-                "jestConfig": "libs/signal-store/jest.config.ts"
+                "passWithNoTests": true
+            },
+            "configurations": {
+                "ci": {
+                    "ci": true,
+                    "coverage": true
+                }
             }
         },
         "lint": {

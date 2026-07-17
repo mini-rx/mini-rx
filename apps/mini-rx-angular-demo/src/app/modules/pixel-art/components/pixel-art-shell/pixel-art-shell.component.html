@@ -6,12 +6,17 @@
     <div class="m-3 alert alert-info d-flex align-items-center" role="alert">
         <i class="info-icon bi bi-info-circle-fill"></i>
         <div>
-            Every Pixel Component has its own <strong>Component Store</strong> instance.
-            The state of a Component Store is <strong>local</strong> and does not become part of the global state object.
+            Every Pixel Component has its own
+            <strong>Component Store</strong>
+            instance. The state of a Component Store is
+            <strong>local</strong>
+            and does not become part of the global state object.
         </div>
     </div>
 
     <div class="d-flex flex-wrap">
-        <app-pixel-art *ngFor="let item of numSequence(2500)"></app-pixel-art>
+        @for (item of numSequence(2500); track item) {
+        <app-pixel-art></app-pixel-art>
+        }
     </div>
 </div>

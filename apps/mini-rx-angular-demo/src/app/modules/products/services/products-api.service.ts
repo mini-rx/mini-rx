@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
@@ -22,11 +22,9 @@ function updateApiUrl(altKeyPressed: boolean) {
     providedIn: 'root',
 })
 export class ProductsApiService {
-    constructor(
-        private http: HttpClient,
-        private errorHandler: ErrorHandlerService,
-        private toastr: ToastrService
-    ) {}
+    private http = inject(HttpClient);
+    private errorHandler = inject(ErrorHandlerService);
+    private toastr = inject(ToastrService);
 
     getProducts(): Observable<Product[]> {
         return this.http.get<Product[]>(apiUrl).pipe(

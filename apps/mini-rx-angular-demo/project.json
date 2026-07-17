@@ -9,6 +9,7 @@
         "build": {
             "executor": "@angular-devkit/build-angular:browser",
             "outputs": ["{options.outputPath}"],
+            "defaultConfiguration": "production",
             "options": {
                 "outputPath": "dist/apps/mini-rx-angular-demo",
                 "index": "apps/mini-rx-angular-demo/src/index.html",
@@ -57,11 +58,12 @@
                     "sourceMap": true,
                     "namedChunks": true
                 }
-            },
-            "defaultConfiguration": "production"
+            }
         },
         "serve": {
             "executor": "@angular-devkit/build-angular:dev-server",
+            "defaultConfiguration": "development",
+            "continuous": true,
             "configurations": {
                 "production": {
                     "buildTarget": "mini-rx-angular-demo:build:production"
@@ -69,8 +71,7 @@
                 "development": {
                     "buildTarget": "mini-rx-angular-demo:build:development"
                 }
-            },
-            "defaultConfiguration": "development"
+            }
         },
         "extract-i18n": {
             "executor": "@angular-devkit/build-angular:extract-i18n",
@@ -82,10 +83,14 @@
             "executor": "@nx/eslint:lint"
         },
         "test": {
-            "executor": "@nx/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/apps/mini-rx-angular-demo"],
             "options": {
-                "jestConfig": "apps/mini-rx-angular-demo/jest.config.ts"
+                "passWithNoTests": true
+            },
+            "configurations": {
+                "ci": {
+                    "ci": true,
+                    "coverage": true
+                }
             }
         },
         "serveAppAndWatchLibs": {

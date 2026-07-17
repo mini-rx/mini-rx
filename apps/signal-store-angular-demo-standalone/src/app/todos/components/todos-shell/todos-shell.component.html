@@ -50,7 +50,8 @@
                     ></app-todo-list>
                 </div>
             </div>
-            <div class="col" *ngIf="selectedTodo()">
+            @if (selectedTodo()) {
+            <div class="col">
                 <app-todo-detail
                     [todo]="selectedTodo()!"
                     (create)="todosFacade.create($event)"
@@ -59,6 +60,7 @@
                     (closed)="todosFacade.clearSelectedTodo()"
                 ></app-todo-detail>
             </div>
+            }
         </div>
     </div>
 </div>

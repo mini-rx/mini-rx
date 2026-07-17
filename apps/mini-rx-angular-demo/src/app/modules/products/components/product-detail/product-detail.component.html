@@ -69,22 +69,19 @@
                     ></textarea>
                 </div>
             </fieldset>
-            <ng-container *ngIf="permissions.canUpdateProducts">
-                <button
-                    class="btn btn-primary mr-2"
-                    (click)="submit(form)"
-                    [disabled]="!form.valid || !form.dirty"
-                >
-                    Save
-                </button>
-                <button
-                    *ngIf="product.id"
-                    class="btn btn-primary btn-danger"
-                    (click)="delete.emit(product)"
-                >
-                    Delete
-                </button>
-            </ng-container>
+            @if (permissions.canUpdateProducts) {
+            <button
+                class="btn btn-primary mr-2"
+                (click)="submit(form)"
+                [disabled]="!form.valid || !form.dirty"
+            >
+                Save
+            </button>
+            @if (product.id) {
+            <button class="btn btn-primary btn-danger" (click)="delete.emit(product)">
+                Delete
+            </button>
+            } }
         </form>
     </div>
 </div>

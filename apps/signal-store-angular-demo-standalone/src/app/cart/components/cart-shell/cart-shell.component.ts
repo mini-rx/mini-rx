@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ProductsFacade } from '../../../products/state/products-facade.service';
-import { CurrencyPipe, NgForOf, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
     templateUrl: './cart-shell.component.html',
     styleUrls: ['./cart-shell.component.scss'],
-    standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgSwitch, CurrencyPipe, NgForOf, NgIf, NgSwitchCase],
+    imports: [CurrencyPipe],
 })
 export class CartShellComponent {
     productsFacade = inject(ProductsFacade);

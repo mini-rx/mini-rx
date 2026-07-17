@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CounterStore } from '../state/counter-store.service';
 
@@ -8,11 +8,12 @@ import { CounterStore } from '../state/counter-store.service';
     styleUrls: ['./counter.component.css'],
     providers: [CounterStore], // The CounterStore is provided for each counter component instance
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class CounterComponent {
-    counter$: Observable<number> = this.counterStore.count$;
+    private counterStore = inject(CounterStore);
 
-    constructor(private counterStore: CounterStore) {}
+    counter$: Observable<number> = this.counterStore.count$;
 
     increment() {
         this.counterStore.increment();

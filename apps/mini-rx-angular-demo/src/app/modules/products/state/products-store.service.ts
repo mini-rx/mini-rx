@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import * as fromProducts from './products.reducer';
 import { createFeatureSelector, createSelector, Store } from 'mini-rx-store';
@@ -87,6 +87,8 @@ const getDetailTitle = createSelector(
     providedIn: 'root',
 })
 export class ProductsStore {
+    private store = inject(Store);
+
     // STATE OBSERVABLES
     displayCode$: Observable<boolean> = this.store.select(getShowProductCode);
     selectedProduct$: Observable<Product | undefined> = this.store.select(getSelectedProduct);
@@ -98,7 +100,7 @@ export class ProductsStore {
     hasCartItems$: Observable<boolean> = this.store.select(getHasCartItems);
     detailTitle$: Observable<string> = this.store.select(getDetailTitle);
 
-    constructor(private store: Store) {
+    constructor() {
         this.load();
     }
 

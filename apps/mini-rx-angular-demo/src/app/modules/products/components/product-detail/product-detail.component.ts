@@ -8,6 +8,7 @@ import { Permissions } from '../../../user/state/user-store.service';
     templateUrl: './product-detail.component.html',
     styleUrls: ['./product-detail.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class ProductDetailComponent {
     @Input()

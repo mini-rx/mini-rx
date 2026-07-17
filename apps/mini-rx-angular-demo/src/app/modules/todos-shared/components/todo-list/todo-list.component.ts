@@ -6,6 +6,7 @@ import { Todo } from '../../models/todo';
     templateUrl: './todo-list.component.html',
     styleUrls: ['./todo-list.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class TodoListComponent {
     @Input()

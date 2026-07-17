@@ -20,7 +20,10 @@
         "noPropertyAccessFromIndexSignature": true,
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "module": "preserve",
+        "moduleResolution": "bundler",
+        "ignoreDeprecations": "6.0"
     },
     "angularCompilerOptions": {
         "strictInjectionParameters": true,

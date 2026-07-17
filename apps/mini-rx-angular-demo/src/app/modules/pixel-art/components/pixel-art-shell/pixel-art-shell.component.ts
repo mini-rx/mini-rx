@@ -4,6 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     templateUrl: './pixel-art-shell.component.html',
     styleUrls: ['./pixel-art-shell.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class PixelArtShellComponent {
     numSequence(n: number): Array<number> {

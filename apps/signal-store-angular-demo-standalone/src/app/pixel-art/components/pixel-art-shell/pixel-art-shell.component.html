@@ -15,6 +15,8 @@
     </div>
 
     <div class="d-flex flex-wrap">
-        <app-pixel-art *ngFor="let item of numSequence(2500)"></app-pixel-art>
+        @for (item of numSequence(2500); track item) {
+        <app-pixel-art></app-pixel-art>
+        }
     </div>
 </div>

@@ -9,24 +9,27 @@
         "build": {
             "executor": "@nx/angular:package",
             "outputs": ["{workspaceRoot}/dist/libs/mini-rx-store-ng"],
+            "defaultConfiguration": "production",
             "options": {
-                "project": "libs/mini-rx-store-ng/ng-package.json"
+                "project": "libs/mini-rx-store-ng/ng-package.json",
+                "tsConfig": "libs/mini-rx-store-ng/tsconfig.lib.json"
             },
             "configurations": {
                 "production": {
                     "tsConfig": "libs/mini-rx-store-ng/tsconfig.lib.prod.json"
                 },
-                "development": {
-                    "tsConfig": "libs/mini-rx-store-ng/tsconfig.lib.json"
-                }
-            },
-            "defaultConfiguration": "production"
+                "development": {}
+            }
         },
         "test": {
-            "executor": "@nx/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/libs/mini-rx-store-ng"],
             "options": {
-                "jestConfig": "libs/mini-rx-store-ng/jest.config.ts"
+                "passWithNoTests": true
+            },
+            "configurations": {
+                "ci": {
+                    "ci": true,
+                    "coverage": true
+                }
             }
         },
         "lint": {

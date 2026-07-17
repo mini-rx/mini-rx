@@ -4,41 +4,38 @@
     </nav>
 
     <div class="container">
-        <div class="row" [ngSwitch]="productsStore.hasCartItems$ | async">
+        <div class="row">
             <div class="col">
-                <h5 class="text-center text-muted" *ngSwitchCase="false">
-                    There is nothing in your shopping cart.
-                </h5>
+                @if (productsStore.hasCartItems$ | async) {
+                <div class="card-header d-flex">
+                    <span class="flex-grow-1">Your shopping cart</span>
+                </div>
+                <ul class="list-group">
+                    @for (item of productsStore.cartItems$ | async; track item.productId) {
+                    <li class="list-group-item d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            {{ item.productName }}
+                            <span class="badge badge-primary badge-pill">
+                                {{ item.amount }}
+                            </span>
+                        </div>
+                        <div class="mr-2">
+                            {{ item.total | currency }}
+                        </div>
 
-                <ng-container *ngSwitchCase="true">
-                    <div class="card-header d-flex">
-                        <span class="flex-grow-1">Your shopping cart</span>
-                    </div>
-                    <ul class="list-group">
-                        <li
-                            *ngFor="let item of productsStore.cartItems$ | async"
-                            class="list-group-item d-flex align-items-center"
-                        >
-                            <div class="flex-grow-1">
-                                {{ item.productName }}
-                                <span class="badge badge-primary badge-pill">
-                                    {{ item.amount }}
-                                </span>
-                            </div>
-                            <div class="mr-2">
-                                {{ item.total | currency }}
-                            </div>
-
-                            <span
-                                class="btn bi bi-trash-fill text-danger"
-                                (click)="productsStore.removeProductFromCart(item)"
-                            ></span>
-                        </li>
-                    </ul>
-                    <div class="card-footer">
-                        <h5>Total: {{ productsStore.cartTotalPrice$ | async | currency }}</h5>
-                    </div>
-                </ng-container>
+                        <span
+                            class="btn bi bi-trash-fill text-danger"
+                            (click)="productsStore.removeProductFromCart(item)"
+                        ></span>
+                    </li>
+                    }
+                </ul>
+                <div class="card-footer">
+                    <h5>Total: {{ productsStore.cartTotalPrice$ | async | currency }}</h5>
+                </div>
+                } @else {
+                <h5 class="text-center text-muted">There is nothing in your shopping cart.</h5>
+                }
             </div>
         </div>
     </div>

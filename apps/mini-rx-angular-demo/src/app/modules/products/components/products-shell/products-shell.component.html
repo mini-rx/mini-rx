@@ -1,15 +1,14 @@
-<div class="d-flex flex-column h-100" *ngIf="userStore.permissions$ | async as permissions">
+@if (userStore.permissions$ | async; as permissions) {
+<div class="d-flex flex-column h-100">
     <nav class="navbar navbar-light bg-light mb-1">
         <a class="navbar-brand">Products</a>
         <div class="d-flex flex-grow-1 mb-2 justify-content-between mt-2">
             <div>
-                <button
-                    *ngIf="permissions.canUpdateProducts"
-                    class="btn btn-primary btn-sm"
-                    (click)="productsStore.newProduct()"
-                >
+                @if (permissions.canUpdateProducts) {
+                <button class="btn btn-primary btn-sm" (click)="productsStore.newProduct()">
                     New
                 </button>
+                }
             </div>
             <app-product-filter
                 [search]="(productsStore.search$ | async)!"
@@ -17,22 +16,24 @@
             ></app-product-filter>
         </div>
     </nav>
-
     <div class="m-3 alert alert-info d-flex align-items-center" role="alert">
         <i class="info-icon bi bi-info-circle-fill"></i>
         <div>
-            MiniRx <strong>(Redux) Store</strong> is used to manage the "products" state.
-            The "products" state becomes part of the <strong>global state</strong> object.
-            <br/>
-            <br/>
-            You can edit the products if you enable "CanUpdateProducts" in the "John Doe" user settings of this demo.
-            <br/>
+            MiniRx
+            <strong>(Redux) Store</strong>
+            is used to manage the "products" state. The "products" state becomes part of the
+            <strong>global state</strong>
+            object.
+            <br />
+            <br />
+            You can edit the products if you enable "CanUpdateProducts" in the "John Doe" user
+            settings of this demo.
+            <br />
             Press the ALT key while saving or deleting a product to simulate an API error.
-            <br/>
+            <br />
             Saving an existing product uses optimistic update (and undo in case of API error).
         </div>
     </div>
-
     <div class="container">
         <div class="row">
             <div class="col">
@@ -46,7 +47,8 @@
                     (addToCart)="productsStore.addProductToCart($event)"
                 ></app-product-list>
             </div>
-            <div class="col" *ngIf="productsStore.selectedProduct$ | async as selectedProduct">
+            @if (productsStore.selectedProduct$ | async; as selectedProduct) {
+            <div class="col">
                 <app-product-detail
                     [product]="selectedProduct"
                     [detailTitle]="(productsStore.detailTitle$ | async)!"
@@ -57,6 +59,8 @@
                     (close)="productsStore.clearCurrentProduct()"
                 ></app-product-detail>
             </div>
+            }
         </div>
     </div>
 </div>
+}

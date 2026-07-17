@@ -4,7 +4,7 @@
         "rootDir": ".",
         "sourceMap": true,
         "declaration": false,
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "importHelpers": true,
@@ -19,7 +19,12 @@
             "@mini-rx/signal-store": ["libs/signal-store/src/index.ts"],
             "mini-rx-store": ["libs/mini-rx-store/src/index.ts"],
             "mini-rx-store-ng": ["libs/mini-rx-store-ng/src/index.ts"]
-        }
+        },
+        "strict": false,
+        "noUncheckedSideEffectImports": false,
+        "types": ["*"],
+        "esModuleInterop": false,
+        "ignoreDeprecations": "6.0"
     },
     "exclude": ["node_modules", "tmp"]
 }

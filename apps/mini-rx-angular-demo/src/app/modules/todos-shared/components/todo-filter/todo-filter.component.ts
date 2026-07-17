@@ -17,6 +17,7 @@ import { Subject } from 'rxjs';
     templateUrl: './todo-filter.component.html',
     styleUrls: ['./todo-filter.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class TodoFilterComponent implements OnInit, OnDestroy {
     @Input()

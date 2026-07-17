@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ProductsStore } from './modules/products/state/products-store.service';
 import { UserStore } from './modules/user/state/user-store.service';
 
@@ -7,7 +7,9 @@ import { UserStore } from './modules/user/state/user-store.service';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class AppComponent {
-    constructor(public productsStore: ProductsStore, public userStore: UserStore) {}
+    productsStore = inject(ProductsStore);
+    userStore = inject(UserStore);
 }

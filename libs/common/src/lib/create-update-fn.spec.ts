@@ -1,7 +1,6 @@
 import { Action, OperationType, StateOrCallback } from './models';
 import { createMiniRxActionType } from './create-mini-rx-action-type';
 import { createUpdateFn } from './create-update-fn';
-
 describe('createUpdateFn', () => {
     it('should create a setState function using OperationType.SET_STATE', () => {
         const setState = createUpdateFn(
@@ -16,10 +15,8 @@ describe('createUpdateFn', () => {
                 };
             }
         );
-
         const someState = {};
         const action = setState(someState, 'name');
-
         expect(action).toStrictEqual({
             stateOrCallback: someState,
             type: '@mini-rx/feature/set-state/name',

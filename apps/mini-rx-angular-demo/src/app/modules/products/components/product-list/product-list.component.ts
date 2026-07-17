@@ -6,6 +6,7 @@ import { Product } from '../../models/product';
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class ProductListComponent {
     @Input()

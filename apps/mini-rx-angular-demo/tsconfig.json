@@ -25,7 +25,10 @@
             "mini-rx-store": ["dist/libs/mini-rx-store"],
             "mini-rx-store-ng": ["dist/libs/mini-rx-store-ng"]
         },
-        "target": "es2020"
+        "target": "es2020",
+        "module": "preserve",
+        "moduleResolution": "bundler",
+        "ignoreDeprecations": "6.0"
     },
     "angularCompilerOptions": {
         "strictInjectionParameters": true,
