@@ -49,7 +49,7 @@
         "angular-in-memory-web-api": "^0.17.0",
         "bootstrap": "^4.6.2",
         "bootstrap-icons": "^1.4.0",
-        "lodash-es": "^4.17.21",
+        "lodash-es": "^4.17.23",
         "ngx-toastr": "^17.0.2",
         "rxjs": "7.8.1",
         "ts-action": "^11.0.0",
